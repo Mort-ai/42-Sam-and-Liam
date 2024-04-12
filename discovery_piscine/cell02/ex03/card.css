@@ -1,0 +1,47 @@
+body {
+    background-color: #dddddd;
+}
+
+.card {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+    0 2px 4px rgba(0,0,0,0.07), 
+    0 4px 8px rgba(0,0,0,0.07), 
+    0 8px 16px rgba(0,0,0,0.07),
+    0 16px 32px rgba(0,0,0,0.07), 
+    0 32px 64px rgba(0,0,0,0.07);
+    background-color: #ffffff;
+    height: 60%;
+    width: 40%;
+    border-radius: 2vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card .title {
+    width: 80%;
+    font-size: 5vh;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card .profilePicture {
+    width: 75%;
+    height: auto;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+table {
+    position: absolute;
+    bottom: 0;
+    background: transparent;
+    width: 70px;
+}

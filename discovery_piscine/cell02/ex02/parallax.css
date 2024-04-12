@@ -1,0 +1,21 @@
+body, html {
+    height: 100%;
+  }
+  
+  .parallax {
+    height: 100%; 
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .parallax1 {
+      background-image: url('dog.jpg');
+  }
+  
+  .parallax2 {
+      background-image: url('dog2.jpg')
+  }

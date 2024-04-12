@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basics</title>
+</head>
+<body>
+    <div class="title">Basics @</div>
+
+    <div class="images">
+        <div class="im">
+            <img src="amazon.jpg" alt="" class="shopImage">
+            <a href='https://amazon.com'><div class="t">Amazon</div></a>
+        </div>
+        <div class="im">
+            <img src="ebay.jpg" alt="" class="shopImage">
+            <a href='https://ebay.com'><div class="t">Ebay</div></a>
+        </div>
+    </div>
+
+    <style>
+        .title {
+            font-size: 80px;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        body {
+            background-color: pink;
+        }
+
+        .images {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 90%;
+            height: 50%;
+            margin: 0 auto;
+        }
+
+        .images .im {
+            width: 40%;
+            height: 100%;
+        }
+
+        .images .im img {
+            aspect-ratio: 1;
+            width: 100%;
+            height: auto;
+        }
+
+        .images .im .t {
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+            color: #ffffff;
+        }
+
+        .copyright {
+            float: right;
+        }
+    </style>
+
+    <hr>
+
+    <i>
+        <code>
+            <div class="copyright">© 42adel-dp-162 2024</div>
+        </code>
+    </i>
+</body>
+</html>

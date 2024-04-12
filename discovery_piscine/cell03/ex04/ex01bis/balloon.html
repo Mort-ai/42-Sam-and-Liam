@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <div class="balloon"></div>
+
+    <style>
+        .balloon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            background-color: red;
+        }
+    </style>
+
+    <script>
+        function clamp(num, min, max) {
+            return Math.min(Math.max(num, min), max);
+        }
+
+        function generateNextColor(currentColor) {
+            if (currentColor == 'rgb(255, 0, 0)') {
+                return 'rgb(0, 255, 0)';
+            } else if (currentColor == 'rgb(0, 255, 0)') {
+                return 'rgb(0, 0, 255)';
+            } else if (currentColor == 'rgb(0, 0, 255)') {
+                return 'rgb(255, 0, 0)';
+            }
+        }
+
+        function generateLastColor(currentColor) {
+            if (currentColor == 'rgb(255, 0, 0)') {
+                return 'rgb(0, 0, 255)';
+            } else if (currentColor == 'rgb(0, 255, 0)') {
+                return 'rgb(255, 0, 0)';
+            } else if (currentColor == 'rgb(0, 0, 255)') {
+                return 'rgb(0, 255, 0)';
+            }
+        }
+
+        $(document).ready(function() {
+            $('.balloon').click(function() {
+                const currentColor = window.getComputedStyle(this).backgroundColor;
+                const newColor = generateNextColor(currentColor);
+                console.log('NC', newColor);
+                $(this).css('width', this.offsetWidth + 10 + 'px');
+                $(this).css('height', this.offsetHeight + 10 + 'px');
+                $(this).css('background-color', newColor);
+
+                if (this.offsetWidth > 420) {
+                    $(this).css('width', '200px');
+                    $(this).css('height', '200px');
+                }
+            });
+
+            $('.balloon').mouseleave(function() {
+                const currentColor = window.getComputedStyle(this).backgroundColor;
+                const newColor = generateLastColor(currentColor);
+                console.log('ML', clamp(this.offsetWidth - 5, 200, 420) + 'px')
+                $(this).css('width', clamp(this.offsetWidth - 5, 200, 420) + 'px');
+                $(this).css('height', clamp(this.offsetHeight - 5, 200, 420) + 'px');
+                $(this).css('background-color', newColor);
+            });
+        });
+    </script>
+</body>
+</html>

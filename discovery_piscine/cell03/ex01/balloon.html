@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="balloon"></div>
+
+    <style>
+        .balloon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            background-color: red;
+        }
+    </style>
+
+    <script>
+        function clamp(num, min, max) {
+            return Math.min(Math.max(num, min), max);
+        }
+
+        function generateNextColor(currentColor) {
+            if (currentColor == 'rgb(255, 0, 0)') {
+                return 'rgb(0, 255, 0)';
+            } else if (currentColor == 'rgb(0, 255, 0)') {
+                return 'rgb(0, 0, 255)';
+            } else if (currentColor == 'rgb(0, 0, 255)') {
+                return 'rgb(255, 0, 0)';
+            }
+        }
+
+        function generateLastColor(currentColor) {
+            if (currentColor == 'rgb(255, 0, 0)') {
+                return 'rgb(0, 0, 255)';
+            } else if (currentColor == 'rgb(0, 255, 0)') {
+                return 'rgb(255, 0, 0)';
+            } else if (currentColor == 'rgb(0, 0, 255)') {
+                return 'rgb(0, 255, 0)';
+            }
+        }
+
+        window.onload = function() {
+            const balloon = document.querySelector('.balloon')
+
+            balloon.onclick = function() {
+                const currentColor = window.getComputedStyle(balloon).backgroundColor;
+                const newColor = generateNextColor(currentColor);
+                console.log('NC', newColor);
+                console.log('BW', balloon.offsetWidth + 10 + 'px');
+                balloon.style.width = balloon.offsetWidth + 10 + 'px';
+                balloon.style.height = balloon.offsetHeight + 10 + 'px';
+                balloon.style.backgroundColor = newColor;
+
+                if (balloon.offsetWidth > 420) {
+                    balloon.style.width = '200px';
+                    balloon.style.height = '200px';
+                }
+            }
+
+            balloon.onmouseleave = function() {
+                const currentColor = window.getComputedStyle(balloon).backgroundColor;
+                const newColor = generateLastColor(currentColor);
+                console.log('ML', clamp(balloon.offsetWidth - 5, 200, 420) + 'px')
+                balloon.style.width = clamp(balloon.offsetWidth - 5, 200, 420) + 'px';
+                balloon.style.height = clamp(balloon.offsetHeight - 5, 200, 420) + 'px';
+                balloon.style.backgroundColor = newColor;
+            }
+        }
+    </script>
+</body>
+</html>

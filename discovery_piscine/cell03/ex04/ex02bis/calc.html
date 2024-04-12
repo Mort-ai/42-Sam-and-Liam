@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="left">
+        <select class="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" class="right">
+        <input class="submit" type="submit" value="Try me!">
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            function numeric(string) {
+                if (typeof string !== 'string') return false;
+
+                return !isNaN(string) && !isNaN(parseFloat(string));
+            }
+
+            function displayError() {
+                alert('Error :(');
+            }
+
+            function every30Seconds() {
+                alert('Please, use me...');
+            }
+
+            $('.submit').click(function() {
+                const operatorInCalculation = $('.operator').find(':selected').text();
+                const leftText = $('.left').val();
+                const rightText = $('.right').val();
+
+                console.log('ltrt', leftText, rightText)
+
+                if (numeric(leftText) && numeric(rightText)) {
+                    const rightFloat = parseFloat(rightText);
+                    const leftFloat = parseFloat(leftText);
+
+                    if (leftFloat >= 0 && rightFloat >= 0) {
+                        if ((operatorInCalculation == '/' || operatorInCalculation == '%') && rightFloat == 0) {
+                            alert('It\'s over 9000!');
+                            console.log('It\'s over 9000!');
+                        } else {
+                            const result = eval(leftText + operatorInCalculation + rightText);
+                
+                            console.log(result);
+                            alert(result);
+                        }
+                    } else {
+                        displayError();
+                    }
+                } else {
+                    displayError();
+                }
+            })
+
+            setInterval(every30Seconds, 30000);
+        })
+    </script>
+</body>
+</html>
